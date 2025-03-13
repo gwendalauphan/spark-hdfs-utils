@@ -1,0 +1,8 @@
+/metastore_db/
+/.bsp/
+/.idea/
+target/*
+project/target/*
+project/project/*
+!target/scala-2.11
+derby.log
