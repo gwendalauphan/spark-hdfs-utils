@@ -1,8 +1,11 @@
 /metastore_db/
 /.bsp/
 /.idea/
-target/*
+**/target/*
 project/target/*
 project/project/*
-!target/scala-2.11
+target/scala-2.11
 derby.log
+
+**.env
+**.log
