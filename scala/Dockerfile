@@ -8,4 +8,7 @@ WORKDIR /app
 
 # Copier les fichiers nécessaires
 COPY ./app /app
-COPY build.sbt /app
+
+
+
+

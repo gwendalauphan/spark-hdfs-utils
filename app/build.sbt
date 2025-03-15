@@ -2,9 +2,9 @@ name := "fonctions_recette"
 
 version := "0.1"
 
-scalaVersion := "2.11.12"
+scalaVersion := "2.12.15"
 
-val sparkVersion = "2.3.2"
+val sparkVersion = "3.0.1"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion,

@@ -14,32 +14,33 @@ object EssaiMain {
     ////////////////////////////////////////////
     /// CONF : Gestion des variables chemins ///
     ////////////////////////////////////////////
-    println("Hello Jérôme")
 
+    
+    val rootPath = "/app/user/spark"
     //get paths
-    val repertoireBaseSpark = args(0) //"/projets/psn/test-fonctions_recette/base",
-    val baseSpark = args(1) //"fonctions_recette"
-    val pathDirectory = args(2) //"/projets/psn/test-fonctions_recette/donnees_test"
-    val pathDirectoryResults = args(3) //"/projets/psn/test-fonctions_recette/resultats"
+    val repertoireBaseSpark = if (args.length > 0) args(0) else s"$rootPath/repertoireBaseSpark"
+    val baseSparkName = if (args.length > 1) args(1) else "baseSpark"
+    val pathData = if (args.length > 2) args(2) else s"$rootPath/pathData"
+    val pathResults = if (args.length > 3) args(3) else s"$rootPath/pathResults"
 
     var tempsMethode = scala.collection.mutable.Map[String, Long]()
 
     //Creation de la Session
-    val spark = creerSparkSession(repertoireBaseSpark, baseSpark)
+    val spark = creerSparkSession(repertoireBaseSpark, baseSparkName)
     logger.info("Creation de la session Spark de l'application")
 
     //Creation de la base de donnees
     logger.info("Creation de la DATABASE ")
-    creerEtSetBasePardefaut(baseSpark)
-    val pathSizeFile = new Path(s"${pathDirectory}")
+    creerEtSetBasePardefaut(baseSparkName)
+    val pathSizeFile = new Path(s"${pathData}")
 
 
     val tempInit = "2020-01-01"
     val tempInit2 ="essai"
-    //addNameColumn(spark, modeColumn = "print", pathDirectory, true, pathDirectoryResults, "|", "csv")
+    //addNameColumn(spark, modeColumn = "print", pathData, true, pathResults, "|", "csv")
     //val dfEssai = fonctionsHdfs.UtilsHdfs.getDirsWithFiles(pathSizeFile,spark,true,listeMotifOnly = Array("stats_log.csv","stats_etat.csv",tempInit,tempInit2) )
 
-    //fonctionsRecette.InfoFiles.writeInfoFiles(pathDirectory,pathDirectory+"/infos_files",true,true,true,spark,listeMotifOnly = Array("stats_log.csv","stats_etat.csv",tempInit,tempInit2),format = "csv",autoriseSousRep = true)
+    //fonctionsRecette.InfoFiles.writeInfoFiles(pathData,pathData+"/infos_files",true,true,true,spark,listeMotifOnly = Array("stats_log.csv","stats_etat.csv",tempInit,tempInit2),format = "csv",autoriseSousRep = true)
 
     //dfEssai.foreach(println)
 
@@ -52,7 +53,7 @@ object EssaiMain {
 
     for (methode <- listeMethode){
       var t0 = current_timestamp()
-      getInfoFiles(pathDirectory,true,false,false,spark,false,methode)
+      getInfoFiles(pathData,true,false,false,spark,false,methode)
       var delta = current_timestamp() - t0
       tempsMethode += (methode, delta)
 

@@ -22,11 +22,10 @@ object UtilsSpark {
     val sparkConf = new SparkConf().
       setIfMissing("spark.master", "local[*]").
       set("spark.sql.warehouse.dir", repertoireBaseSpark)
-
+    
     val spark = SparkSession.builder.
       appName(sessionName).
       config(sparkConf).
-      enableHiveSupport().
       getOrCreate()
 
     spark

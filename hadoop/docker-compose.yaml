@@ -3,8 +3,8 @@ version: '3'
 services:
   hadoop-namenode:
     image: apache/hadoop:3.3.5
-    container_name: namenode
-    hostname: namenode
+    container_name: hadoop-namenode
+    hostname: hadoop-namenode
     user: root
     environment:
       - HADOOP_HOME=/opt/hadoop
@@ -19,7 +19,7 @@ services:
 
   hadoop-datanode:
     image: apache/hadoop:3.3.5
-    container_name: datanode
+    container_name: hadoop-datanode
     hostname: datanode
     user: root
     environment:
@@ -33,7 +33,7 @@ services:
     command: [ "/bin/bash", "/init-datanode.sh" ]
 
     links:
-      - hadoop-namenode:namenode
+      - hadoop-namenode:hadoop-namenode
 
   spark-master:
     image: docker.io/bitnami/spark:3.5
@@ -52,7 +52,7 @@ services:
     container_name: spark-worker
     environment:
       - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_MASTER_URL=spark://spark-master:7077
       - SPARK_WORKER_MEMORY=1G
       - SPARK_WORKER_CORES=1
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -60,3 +60,4 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - SPARK_USER=spark
+
