@@ -15,6 +15,7 @@
   - [Tests Unitaires](#tests-unitaires)
 - [Demo](#demo)
   - [Références](#références)
+- [Repos source](#repos-source)
 
 ---
 
@@ -155,3 +156,8 @@ cd toolkit
 
 - **Maven Repository**
   - [mvnrepository.com](https://mvnrepository.com/)
+
+# Repos source
+
+Base: https://gitlab.com/informatique9073415/library/scala/spark-hdfs-utils.git
+Mirror: https://github.com/gwendalauphan/spark-hdfs-utils.git
