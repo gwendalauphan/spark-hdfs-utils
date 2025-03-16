@@ -2,11 +2,31 @@ package fonctionsHdfs
 
 import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.spark.sql.SparkSession
+import org.apache.log4j.Logger
 
 /**
   * Fonctions dédiées à l'utilisation hadoop hdfs sous spark
 */
 object UtilsHdfs {
+
+  /** controlExistenceChemin
+   *
+   * @param spark: SparkSession -
+   * @param log4jlogger: Logger - Logger de la session spark
+   * @param chemin: String - Chemin du fichier ou repertoire a verifier
+   * @return Boolean - True si le chemin existe, False sinon
+   */
+
+    def controlExistenceChemin(spark: SparkSession, log4jlogger: Logger, chemin: String): Boolean = {
+      val fs = FileSystem.get(spark.sparkContext.hadoopConfiguration)
+      if (!fs.exists(new Path(chemin))) {
+        log4jlogger.info(chemin + " doesn't exist")
+        false
+      } else {
+        log4jlogger.info(chemin + " exists")
+        true
+      }
+    }
 
   /** getDirsWithFiles
    * Retourne la liste de chemins contenu dans le répertoire (recursive)
@@ -21,8 +41,8 @@ object UtilsHdfs {
    */
   def getDirsWithFiles(
                         hdfsPath: Path,
-                        spark:SparkSession,
-                        autoriseSousRep:Boolean = false,
+                        spark: SparkSession,
+                        autoriseSousRep: Boolean = false,
                         listeCheminsExclus: Array[String] = Array[String](),
                         listeMotifExclus: Array[String] = Array[String](),
                         listeMotifOnly:  Array[String] = Array[String]()
@@ -60,7 +80,7 @@ object UtilsHdfs {
       }
     }
   }
-  def listerRepertoireHdfs(spark:SparkSession,chemin:String):Unit={
+  def listerRepertoireHdfs(spark: SparkSession,chemin: String):Unit={
     import org.apache.hadoop.fs.{FileSystem, Path}
 
     val fs = FileSystem.get(spark.sparkContext.hadoopConfiguration)

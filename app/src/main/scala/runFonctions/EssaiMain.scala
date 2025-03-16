@@ -1,67 +1,51 @@
 package runFonctions
 
-import fonctionsRecette.InfoFiles.{addNameColumn, writeInfoFiles}
-import fonctionsUtils.UtilsSpark.{creerEtSetBasePardefaut, creerSparkSession}
+import fonctionsRecette.InfoFiles
+import fonctionsUtils.UtilsSpark
+import fonctionsUtils.UtilsFile
+import fonctionsUtils.UtilsDev
+import fonctionsHdfs.UtilsHdfs
+
 import org.apache.hadoop.fs.Path
 import org.apache.log4j.Logger
 
-object EssaiMain {
+object DemoMain {
 
   val logger = Logger.getLogger(this.getClass.getName)
 
-  def main(args: Array[String]): Unit = {
+  /**
+   * Liste les méthodes déclarées directement dans l'objet (en filtrant
+   * l'héritage de AnyRef / Object) et les méthodes "spéciales" Scala
+   * qui contiennent "$".
+   */
+  def listMethods(obj: AnyRef, label: String): Unit = {
+    println(s"=== Méthodes de $label ===")
+    // obj.getClass => par ex. fonctionsRecette.InfoFiles$ pour l'objet InfoFiles
+    val methods = obj.getClass.getMethods
+      // garde uniquement les méthodes dont la classe déclarante est la classe de l'objet
+      .filter(m => m.getDeclaringClass == obj.getClass)
+      // on ignore les méthodes internes Scala (souvent "$" dans le nom)
+      .filterNot(m => m.getName.contains("$"))
 
-    ////////////////////////////////////////////
-    /// CONF : Gestion des variables chemins ///
-    ////////////////////////////////////////////
-
-    
-    val rootPath = "/app/user/spark"
-    //get paths
-    val repertoireBaseSpark = if (args.length > 0) args(0) else s"$rootPath/repertoireBaseSpark"
-    val baseSparkName = if (args.length > 1) args(1) else "baseSpark"
-    val pathData = if (args.length > 2) args(2) else s"$rootPath/pathData"
-    val pathResults = if (args.length > 3) args(3) else s"$rootPath/pathResults"
-
-    var tempsMethode = scala.collection.mutable.Map[String, Long]()
-
-    //Creation de la Session
-    val spark = creerSparkSession(repertoireBaseSpark, baseSparkName)
-    logger.info("Creation de la session Spark de l'application")
-
-    //Creation de la base de donnees
-    logger.info("Creation de la DATABASE ")
-    creerEtSetBasePardefaut(baseSparkName)
-    val pathSizeFile = new Path(s"${pathData}")
-
-
-    val tempInit = "2020-01-01"
-    val tempInit2 ="essai"
-    //addNameColumn(spark, modeColumn = "print", pathData, true, pathResults, "|", "csv")
-    //val dfEssai = fonctionsHdfs.UtilsHdfs.getDirsWithFiles(pathSizeFile,spark,true,listeMotifOnly = Array("stats_log.csv","stats_etat.csv",tempInit,tempInit2) )
-
-    //fonctionsRecette.InfoFiles.writeInfoFiles(pathData,pathData+"/infos_files",true,true,true,spark,listeMotifOnly = Array("stats_log.csv","stats_etat.csv",tempInit,tempInit2),format = "csv",autoriseSousRep = true)
-
-    //dfEssai.foreach(println)
-
-
-    //val listFilepath = getDirsWithFiles(pathSizeFile,spark,autoriseSousRep = true)
-    //listFilepath.foreach(println)
-
-    /*
-    val listeMethode = List("readFile","textFile","newFile")
-
-    for (methode <- listeMethode){
-      var t0 = current_timestamp()
-      getInfoFiles(pathData,true,false,false,spark,false,methode)
-      var delta = current_timestamp() - t0
-      tempsMethode += (methode, delta)
-
-    }*/
-
-
-    logger.info("Fin de la session")
-    spark.stop()
+    if (methods.isEmpty)
+      println(s"Aucune méthode déclarée directement dans $label.")
+    else {
+      methods.foreach(m => println(s"- ${m.getName}"))
+    }
+    println()
   }
 
+  def main(args: Array[String]): Unit = {
+
+    // Appel de la fonction pour chacun des objets importés
+    // (InfoFiles, UtilsSpark, UtilsFile, UtilsDev, UtilsHdfs).
+    // Attention : on utilise "InfoFiles" (l'objet), pas "InfoFiles._"
+    listMethods(InfoFiles,  "fonctionsRecette.InfoFiles")
+    listMethods(UtilsSpark, "fonctionsUtils.UtilsSpark")
+    listMethods(UtilsFile,  "fonctionsUtils.UtilsFile")
+    listMethods(UtilsDev,   "fonctionsUtils.UtilsDev")
+    listMethods(UtilsHdfs,  "fonctionsHdfs.UtilsHdfs")
+
+    logger.info("Fin de la liste des méthodes.")
+  }
 }

@@ -49,7 +49,7 @@ object UtilsFile {
    * @param tmpFolder: String - Nom de fichier temporaire (default = "tmp_folder")
    * @param saveMode: String - Regarde si le fichier existe déjà (default = "error")
    * @param format: String - Format du fichier ("csv", "orc", etc ...) (default = "csv")
-   * @param delimiterCaractere: String - Symbole qui sépare les valeurs les unes des autres (default = "|")
+   * @param delimiter: String - Symbole qui sépare les valeurs les unes des autres (default = "|")
    * @return Unit (rien)
    */
   def writeSingleFile(
@@ -59,13 +59,13 @@ object UtilsFile {
                        tmpFolder: String = "tmp_folder",         // will be deleted, so make sure it doesn't already exist
                        saveMode: String = "error", // Spark default is error, overwrite and append are also common
                        format: String = "csv",    // csv, parquet
-                       delimiterCaractere:String = "|" 
+                       delimiter:String = "|"
                      ): Unit = {
     df.repartition(1)
       .write
       .mode(saveMode)
       .option("header","true")
-      .option("delimiter",delimiterCaractere)
+      .option("delimiter",delimiter)
       .format(format)
       .save(tmpFolder)
 

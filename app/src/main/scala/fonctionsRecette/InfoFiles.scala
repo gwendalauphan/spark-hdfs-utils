@@ -36,8 +36,8 @@ object InfoFiles {
                     pathTarget: String,
                     header : Boolean,
                     pathDirectoryResults: String = "",
-                    delimiter:String = "|",
-                    format:String = "csv",
+                    delimiter: String = "|",
+                    format: String = "csv",
                     autoriseSousRep: Boolean =false,
                     listeCheminsExclus: Array[String] = Array[String](),
                     listeMotifExclus: Array[String] = Array("_nameAdded"),
@@ -52,7 +52,7 @@ object InfoFiles {
         spark.sparkContext,
         saveMode = "overwrite",
         format = format,
-        delimiterCaractere = delimiter))
+        delimiter = delimiter))
     }
     else if (modeColumn == "print"){
       listFiles.foreach(x => readFile(spark,header,x,delimiter,format,true).show())
@@ -105,14 +105,14 @@ object InfoFiles {
    * @return Dataframe: Contenant les infos de chaque fichier en fonction des paramètres
    */
   def getInfoFiles(pathDirectory: String,
-                   paraSize:Boolean,
-                   paraCountRaws:Boolean,
+                   paraSize: Boolean,
+                   paraCountRaws: Boolean,
                    paraColumns: Boolean,
                    spark: SparkSession,
                    paraPath: Boolean = false,
-                   delimiter:String = "|",
-                   format:String = "csv",
-                   autoriseSousRep:Boolean = false,
+                   delimiter: String = "|",
+                   format: String = "csv",
+                   autoriseSousRep: Boolean = false,
                    listeCheminsExclus: Array[String] = Array[String](),
                    listeMotifExclus: Array[String] = Array[String](),
                    listeMotifOnly:  Array[String] = Array[String]()): DataFrame ={
@@ -204,15 +204,15 @@ object InfoFiles {
    * @return Unit (rien)
    */
   def printInfoFiles(pathDirectory: String,
-                     paraSize:Boolean,
-                     paraCountRaws:Boolean,
+                     paraSize: Boolean,
+                     paraCountRaws: Boolean,
                      paraColumns: Boolean,
                      spark: SparkSession,
                      paraPath: Boolean = false,
-                     paraGo:Boolean = false,
-                     delimiter:String = "|",
-                     format:String = "csv",
-                     autoriseSousRep:Boolean = false,
+                     paraGo: Boolean = false,
+                     delimiter: String = "|",
+                     format: String = "csv",
+                     autoriseSousRep: Boolean = false,
                      listeCheminsExclus: Array[String] = Array[String](),
                      listeMotifExclus: Array[String] = Array[String](),
                      listeMotifOnly:  Array[String] = Array[String]()
@@ -271,8 +271,8 @@ object InfoFiles {
    * @return Dataframe: Contenant la taille de chaque fichier
    */
   def getSizeFiles(pathDirectory: String,
-                   spark:SparkSession,
-                   autoriseSousRep:Boolean = false,
+                   spark: SparkSession,
+                   autoriseSousRep: Boolean = false,
                    listeCheminsExclus: Array[String] = Array[String](),
                    listeMotifExclus: Array[String] = Array[String](),
                    listeMotifOnly:  Array[String] = Array[String]()):DataFrame = {
@@ -307,8 +307,8 @@ object InfoFiles {
    */
   def printSizeFiles(pathDirectory: String,
                      spark: SparkSession,
-                     paraGo:Boolean = false,
-                     autoriseSousRep:Boolean = false,
+                     paraGo: Boolean = false,
+                     autoriseSousRep: Boolean = false,
                      listeCheminsExclus: Array[String] = Array[String](),
                      listeMotifExclus: Array[String] = Array[String](),
                      listeMotifOnly:  Array[String] = Array[String]()): Unit ={
@@ -347,9 +347,9 @@ object InfoFiles {
    */
   def getRawCountFiles(pathDirectory: String,
                        spark: SparkSession,
-                       delimiter:String = "|",
-                       format:String = "csv",
-                       autoriseSousRep:Boolean = false,
+                       delimiter: String = "|",
+                       format: String = "csv",
+                       autoriseSousRep: Boolean = false,
                        listeCheminsExclus: Array[String] = Array[String](),
                        listeMotifExclus: Array[String] = Array[String](),
                        listeMotifOnly:  Array[String] = Array[String]()): DataFrame ={
@@ -383,9 +383,9 @@ object InfoFiles {
    */
   def printRawCountFiles(pathDirectory: String,
                          spark: SparkSession,
-                         delimiter:String = "|",
-                         format:String = "csv",
-                         autoriseSousRep:Boolean = false,
+                         delimiter: String = "|",
+                         format: String = "csv",
+                         autoriseSousRep: Boolean = false,
                          listeCheminsExclus: Array[String] = Array[String](),
                          listeMotifExclus: Array[String] = Array[String](),
                          listeMotifOnly:  Array[String] = Array[String]()): Unit = {
@@ -417,9 +417,9 @@ object InfoFiles {
    */
   def getColumnFiles(pathDirectory: String,
                      spark: SparkSession,
-                     delimiter:String = "|",
-                     format:String = "csv",
-                     autoriseSousRep:Boolean = false,
+                     delimiter: String = "|",
+                     format: String = "csv",
+                     autoriseSousRep: Boolean = false,
                      listeCheminsExclus: Array[String] = Array[String](),
                      listeMotifExclus: Array[String] = Array[String](),
                      listeMotifOnly:  Array[String] = Array[String]()): DataFrame ={
@@ -452,9 +452,9 @@ object InfoFiles {
    */
   def printColumnFiles(pathDirectory: String,
                        spark: SparkSession,
-                       delimiter:String = "|",
-                       format:String = "csv",
-                       autoriseSousRep:Boolean = false,
+                       delimiter: String = "|",
+                       format: String = "csv",
+                       autoriseSousRep: Boolean = false,
                        listeCheminsExclus: Array[String] = Array[String](),
                        listeMotifExclus: Array[String] = Array[String](),
                        listeMotifOnly:  Array[String] = Array[String]()): Unit = {
@@ -495,20 +495,20 @@ object InfoFiles {
    */
   def writeInfoFiles(pathDirectory: String,
                      filename: String,
-                     paraSize:Boolean,
-                     paraCountRaws:Boolean,
+                     paraSize: Boolean,
+                     paraCountRaws: Boolean,
                      paraColumns: Boolean,
                      spark: SparkSession,
                      paraPath: Boolean = false,
                      saveMode: String = "overwrite",
-                     delimiter:String = "|",
-                     format:String = "csv",
-                     autoriseSousRep:Boolean = false,
+                     delimiter: String = "|",
+                     format: String = "csv",
+                     autoriseSousRep: Boolean = false,
                      listeCheminsExclus: Array[String] = Array[String](),
                      listeMotifExclus: Array[String] = Array[String](),
                      listeMotifOnly:  Array[String] = Array[String]()): Unit = {
 
     val df = getInfoFiles(pathDirectory, paraSize,paraCountRaws,paraColumns,spark,autoriseSousRep = autoriseSousRep,listeCheminsExclus=listeCheminsExclus,listeMotifExclus=listeMotifExclus,listeMotifOnly=listeMotifOnly)
-    writeSingleFile(df,filename,spark.sparkContext,saveMode = saveMode,format =format,delimiterCaractere = delimiter)
+    writeSingleFile(df,filename,spark.sparkContext,saveMode = saveMode,format =format,delimiter = delimiter)
   }
 }

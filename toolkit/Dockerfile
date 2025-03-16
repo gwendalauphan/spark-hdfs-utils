@@ -8,7 +8,4 @@ WORKDIR /app
 
 # Copier les fichiers nécessaires
 COPY ./app /app
-
-
-
-
+RUN sbt compile

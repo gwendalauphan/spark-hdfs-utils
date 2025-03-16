@@ -1,7 +1,6 @@
 package fonctionsUtils
 
 import org.apache.hadoop.fs.{FileSystem, Path}
-import org.apache.log4j.Logger
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
@@ -48,19 +47,6 @@ object UtilsSpark {
     spark.sql(s"use $BASE")
   }
 
-  /** controlExistenceChemin
-   *
-   * @param spark: SparkSession -
-   * @param log4jlogger: Logger - Logger de la session spark
-   * @param chemin: String - Chemin du fichier ou repertoire a verifier
-   * @return Unit (rien)
-   */
-  def controlExistenceChemin (spark:SparkSession, log4jlogger:Logger, chemin:String) : Unit = {
-    val fs = FileSystem.get(spark.sparkContext.hadoopConfiguration)
-    if (! fs.exists (new Path(chemin) ) ) {
-      log4jlogger.info (chemin + " doesn't exist ")
-      sys.exit (0)
-    }
-  }
+
 
 }

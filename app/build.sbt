@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
 
 
 //lancement de la classe Main principale
-mainClass in (Compile, run) := Some("runFonctions.EssaiMain")
+mainClass in (Compile, run) := Some("runFonctions.DemoMain")
 // Compatibilite sbt et Spark en local
 
 fork := true // permet de separer le processus sbt et spark
