@@ -121,7 +121,7 @@ cd toolkit
 
 # Demo
 
-![video demo](docs/demo.webm)
+[video demo](docs/demo.webm)
 
 ---
 
@@ -141,4 +141,3 @@ cd toolkit
 
 - **Maven Repository**
   - [mvnrepository.com](https://mvnrepository.com/)
-
