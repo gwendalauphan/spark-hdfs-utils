@@ -2,6 +2,8 @@
 
 **Spark HDFS Utils** est un ensemble de classes et de fonctions facilitant l’interaction entre **Apache Spark** et un cluster **Hadoop HDFS**. Il propose notamment des méthodes de traitement de données, des utilitaires pour manipuler des DataFrames et des fonctionnalités pour gérer des chemins et répertoires sous HDFS.
 
+🚀 **DEMO** → [demo video](#demo)
+
 ## Table des matières
 
 - [Spark HDFS Utils](#spark-hdfs-utils)
@@ -14,7 +16,7 @@
       - [Exemple d’utilisation](#exemple-dutilisation)
   - [Tests Unitaires](#tests-unitaires)
 - [Demo](#demo)
-  - [Références](#références)
+- [Refs](#refs)
 - [Repos source](#repos-source)
 
 ---
@@ -136,7 +138,7 @@ cd toolkit
 
 # Demo
 
-[video demo](docs/demo.webm)
+![video demo](docs/demo.webm)
 
 ---
 
