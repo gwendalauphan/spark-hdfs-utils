@@ -140,7 +140,7 @@ cd toolkit
 
 ---
 
-## Références
+# Refs
 
 - **Hadoop**
   - [bigdatafoundation/docker-hadoop](https://github.com/bigdatafoundation/docker-hadoop)
