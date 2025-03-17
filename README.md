@@ -82,7 +82,7 @@ mainClass in (Compile, run) := Some("runFonctions.EssaiMain")
 
 Le projet propose un **toolkit** permettant de lancer le code Scala/Spark sans installer localement Java, Scala, SBT ni Spark.
 
-> **Note** : Vous aurez besoin d’un compte Docker pour accéder au Hub Docker et, si nécessaire, pousser vos images. Les identifiants sont configurés dans le fichier `.env` (non versionné par git), au sein du dossier `toolkit`.
+> **Note** : Vous aurez besoin d’un compte Docker pour accéder au Hub Docker afin de récuperer les images. Les identifiants sont configurés dans le fichier `.env` (non versionné par git), au sein du dossier `toolkit`.
 
 ### Configuration
 
