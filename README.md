@@ -139,7 +139,8 @@ cd toolkit
 # Demo
 
 ![](docs/demo.webm)
-![demo.webm](https://github.com/user-attachments/assets/3e81645c-2714-41b0-90a7-5808a18405f5)
+
+[demo.webm](https://github.com/user-attachments/assets/3e81645c-2714-41b0-90a7-5808a18405f5)
 
 ---
 
